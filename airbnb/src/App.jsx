@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css'; // Import your CSS for styling
 
 // Components
@@ -10,6 +10,15 @@ import ListingCard from './components/ListingCard';
 import Footer from './components/Footer';
 import ListingDetails from './components/ListingDetails'; // New component for listing details
 import BookingPage from './components/BookingPage'; // New component for booking
+import SignupPage from './components/auth/SignupPage'; // New Signup component
+import LoginPage from './components/auth/LoginPage'; // New Login component
+import AdminPanel from './components/admin/AdminPanel'; // New Admin Panel component
+
+// Utility for checking authentication
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/login" />;
+};
 
 function App() {
   const [listings, setListings] = useState([]);
@@ -48,7 +57,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* Always render the Navbar and Footer */}
+        {/* Always render the Navbar */}
         <Navbar />
         <SearchBar
           searchQuery={searchQuery}
@@ -78,8 +87,22 @@ function App() {
           <Route path="/listings/:id" element={<ListingDetails />} />
           {/* Booking Page Route */}
           <Route path="/book/:id" element={<BookingPage />} />
+          {/* Signup Route */}
+          <Route path="/signup" element={<SignupPage />} />
+          {/* Login Route */}
+          <Route path="/login" element={<LoginPage />} />
+          {/* Admin Panel Route (Protected) */}
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute>
+                <AdminPanel />
+              </PrivateRoute>
+            }
+          />
         </Routes>
 
+        {/* Footer */}
         <Footer />
       </div>
     </Router>
