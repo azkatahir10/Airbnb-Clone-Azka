@@ -1,0 +1,31 @@
+[
+    {
+      "id": 1,
+      "title": "Cozy Beachfront Cottage",
+      "type": "Entire home",
+      "guests": 4,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "price": 120,
+      "rating": 4.8,
+      "image": "../card-img.jpg",
+      "location": "Beachfront"
+    },
+    {
+      "id": 2,
+      "title": "Mountain Cabin Retreat",
+      "type": "Cabin",
+      "guests": 6,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "price": 150,
+      "rating": 4.9,
+      "image": "../card-img.jpg",
+      "location": "Mountains"
+    }
+
+
+  ]
+
+  
+  
